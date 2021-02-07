@@ -1,5 +1,3 @@
-@import "~antd/es/style/themes/default.less";
-
 .radioDate {
   display: inline-block;
   margin-right: 24px;
@@ -7,33 +5,33 @@
 
   a {
     padding: 4px 14px;
-    color: @text-color !important;
-    border-color: @border-color-split !important;
-    border-top: @border-width-base @border-style-base @border-color-split;
-    border-bottom: @border-width-base @border-style-base @border-color-split;
-    border-right: @border-width-base @border-style-base @border-color-split;
+    color: rgba(0, 0, 0, 0.85) !important;
+    border-color: rgba(0, 0, 0, 0.94) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.94);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.94);
+    border-right: 1px solid rgba(0, 0, 0, 0.94);
 
     &:hover {
       color: #1890ff !important;
     }
 
     &.currentDate {
-      color: @white !important;
+      color: #fff !important;
       background-color: #1890ff !important;
       border-color: #1890ff !important;
     }
   }
   .aStart {
-    border-left: @border-width-base @border-style-base @border-color-split;
-    border-radius: @border-radius-base 0 0 @border-radius-base;
+    border-left: 1px solid rgba(0, 0, 0, 0.94);
+    border-radius: 2px 0 0 2px;
   }
 
   .aEnd {
-    border-radius: 0 @border-radius-base @border-radius-base 0;
+    border-radius: 0 2px 2px 0;
   }
 }
 
-@media screen and (max-width: @screen-md) {
+@media screen and (max-width: 768px) {
   .radioDate {
     display: none;
   }

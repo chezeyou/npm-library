@@ -1,5 +1,5 @@
 import moment from "moment";
-import { typeEnum as dateType } from "../map.jsx";
+import { typeEnum as dateType } from "../../map/map.jsx";
 
 moment.locale("zh-cn");
 

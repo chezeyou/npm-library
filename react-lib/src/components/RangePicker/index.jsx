@@ -1,6 +1,6 @@
 import React from "react";
 import { Radio } from "antd";
-import { typeName } from "./dateTypeConfig";
+import { typeName } from "../../map/map.jsx";
 import styles from "./index.less";
 
 const eleGenerator = (items) => {

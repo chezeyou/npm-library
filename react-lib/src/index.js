@@ -6,4 +6,5 @@ export { default as SelectInput } from "./components/SelectInput/index.jsx";
 export { default as TooltipInput } from "./components/TooltipInput/index.jsx";
 export { default as AddButton } from "./components/AddButton/index.jsx";
 export { default as FormModal } from "./components/FormModal/index.jsx";
+export { default as RangePicker } from "./components/RangePicker/index.jsx";
 

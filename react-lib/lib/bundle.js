@@ -228,6 +228,15 @@ var DEFAULTGULTER = [{
   xl: 24,
   xxl: 24
 }];
+var typeName = {
+  today: '今日',
+  yesterday: '昨日',
+  week: '7天',
+  halfMonth: '15天',
+  month: '30天',
+  quarter: '90天',
+  year: '一年'
+};
 
 // 利用闭包自执行创建私有变量
 var generateId = function () {
@@ -791,9 +800,54 @@ var FormModal = function FormModal(_ref) {
   }, toExtraProps))));
 };
 
+var css_248z$2 = ".index_radioDate__1U7hR {\n  display: inline-block;\n  margin-right: 24px;\n  margin-left: 24px;\n}\n.index_radioDate__1U7hR a {\n  padding: 4px 14px;\n  color: rgba(0, 0, 0, 0.85) !important;\n  border-color: rgba(0, 0, 0, 0.94) !important;\n  border-top: 1px solid rgba(0, 0, 0, 0.94);\n  border-bottom: 1px solid rgba(0, 0, 0, 0.94);\n  border-right: 1px solid rgba(0, 0, 0, 0.94);\n}\n.index_radioDate__1U7hR a:hover {\n  color: #1890ff !important;\n}\n.index_radioDate__1U7hR a.index_currentDate__1qMao {\n  color: #fff !important;\n  background-color: #1890ff !important;\n  border-color: #1890ff !important;\n}\n.index_radioDate__1U7hR .index_aStart__2Ztxl {\n  border-left: 1px solid rgba(0, 0, 0, 0.94);\n  border-radius: 2px 0 0 2px;\n}\n.index_radioDate__1U7hR .index_aEnd__Mj_RX {\n  border-radius: 0 2px 2px 0;\n}\n@media screen and (max-width: 768px) {\n  .index_radioDate__1U7hR {\n    display: none;\n  }\n}\n";
+var styles$2 = {"radioDate":"index_radioDate__1U7hR","currentDate":"index_currentDate__1qMao","aStart":"index_aStart__2Ztxl","aEnd":"index_aEnd__Mj_RX"};
+styleInject(css_248z$2);
+
+var eleGenerator = function eleGenerator(items) {
+  var findKey = function findKey(value) {
+    var compare = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (a, b) {
+      return a === b;
+    };
+    return Object.keys(typeName).find(function (k) {
+      return compare(typeName[k], value);
+    });
+  };
+
+  var eles = [];
+
+  for (var _i = 0, _Object$keys = Object.keys(items); _i < _Object$keys.length; _i++) {
+    var item = _Object$keys[_i];
+    var itemKey = findKey(item);
+    eles.push( /*#__PURE__*/React__default['default'].createElement(antd.Radio.Button, {
+      value: itemKey,
+      key: itemKey
+    }, item));
+  }
+
+  return eles;
+};
+
+var RadioDateBtns = function RadioDateBtns(props) {
+  var rangesItem = props.rangesItem,
+      selectDate = props.selectDate;
+      props.rangePickerValue;
+      var flag = props.flag;
+  return /*#__PURE__*/React__default['default'].createElement("div", {
+    className: styles$2.radioDate
+  }, /*#__PURE__*/React__default['default'].createElement(antd.Radio.Group, {
+    size: "small",
+    value: flag,
+    onChange: function onChange(e) {
+      return selectDate(e.target.value);
+    }
+  }, eleGenerator(rangesItem)));
+};
+
 exports.AddButton = AddButton;
 exports.FormModal = FormModal;
 exports.QueryHeader = QueryHeader$1;
+exports.RangePicker = RadioDateBtns;
 exports.SecTable = index;
 exports.SelectInput = SelectInput;
 exports.Switch = Switch;
