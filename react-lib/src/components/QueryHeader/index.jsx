@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Row, Col } from "antd";
 import styled from "styled-components";
-import { DEFAULTCOLLAYOUT, DEFAULTGULTER } from "../../map/map.jsx";
+import { DEFAULTCOLLAYOUT, DEFAULTGULTER } from "../../map/index.jsx";
 import { generateId } from "../../utils/utils.js";
 
 const DIV = styled.div`
