@@ -10,12 +10,12 @@
 import React, { memo, useEffect, useReducer } from "react";
 import { Table } from "antd";
 import QueryHeader from "../QueryHeader/index.jsx";
-import {generateId} from '../../utils/utils.js'
+import { generateId } from "../../utils/utils.js";
 import styles from "./index.less";
 
 const initstate = { page: 1, size: 10, secId: null };
 const calcPage = (payload) => {
-  const { page, size, delNum, total } = payload;
+  const { page, size, delNum, total = 0 } = payload;
   let pageNo = page;
   const restNum = total - size * (page - 1);
   let pageNoDiff = Math.floor((delNum - restNum) / size) + 1;
@@ -29,13 +29,14 @@ const calcPage = (payload) => {
   return pageNo;
 };
 const reducer = (state, action) => {
-  const { page, size, delNum = 1, total } = action?.payload || {};
+  const { payload = {} } = action;
   switch (action.type) {
     case "add":
       return { ...state, page: 1, secId: generateId("add") };
     case "edit":
       return { ...state, secId: generateId("edit") };
     case "del":
+      const { delNum = 1, total } = payload;
       return {
         ...state,
         page: calcPage({ ...state, delNum, total }),
@@ -44,6 +45,7 @@ const reducer = (state, action) => {
     case "search":
       return { ...state, page: 1, secId: generateId("search") };
     case "pageChange":
+      const { page, size } = payload;
       return { page, size, secId: generateId("pageChange") };
     default:
       return state;
@@ -55,11 +57,10 @@ const Sectabel = (props) => {
     refresh,
     total,
     queryItem,
-    children,
     extraProps,
-    mountTo = true,
     pagination = {},
     relyOn = [],
+    children,
     ...rest
   } = props;
   const [state, dispatch] = useReducer(reducer, initstate);
@@ -67,7 +68,7 @@ const Sectabel = (props) => {
 
   useEffect(() => {
     if (!refresh) return;
-    const type = refresh && typeof refresh === "string" ? refresh : "del";
+    const type = typeof refresh === "string" ? refresh : "del";
     if (type === "del") {
       const { delNum = 1 } = refresh;
       dispatch({ type: "del", payload: { delNum, total } });
@@ -77,7 +78,6 @@ const Sectabel = (props) => {
   }, [refresh]);
 
   useEffect(() => {
-    if (!secId && !mountTo) return;
     getList({ page: page - 1, size, ...extraProps });
   }, [secId, ...relyOn]);
 
@@ -89,7 +89,7 @@ const Sectabel = (props) => {
   };
 
   const paginationProps = () => {
-    if (!pagination) return false;
+    if (!pagination || !total) return false;
     return {
       current: page,
       total,
