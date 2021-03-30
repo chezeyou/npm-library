@@ -13,13 +13,13 @@ const AddButton = (props) => {
     visible = false,
     addHandle = () => {},
     children,
-    btStyles,
+    style,
   } = props;
   return (
     <DIV>
       <div
-        className={styles["addBtn-addBtn"]}
-        style={btStyles}
+        className={styles["addBtn"]}
+        style={style}
         onClick={addHandle}
       >
         <PlusOutlined />
