@@ -1,6 +1,6 @@
 {
   "name": "ti-aureum",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "lib/bundle.js",
   "license": "MIT",
   "description": "Tistarsec test react components library",
