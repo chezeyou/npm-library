@@ -23,17 +23,17 @@ const SPAN = styled.span`
 const QueryHeader = (props) => {
   const { Items = [], gutter = DEFAULTGULTER } = props;
   return (
-    <Row gutter={gutter} style={{marginBottom: 24}}>
+    <Row gutter={gutter} style={{marginBottom: 12}}>
       {Items.map((item) => {
         const {
           name = generateId("queryNoName"),
           title = null,
-          span = DEFAULTCOLLAYOUT,
+          layout = DEFAULTCOLLAYOUT,
           children,
           titleWidth = 120,
         } = item;
         return (
-          <Col key={name} {...span}>
+          <Col key={name} {...layout}>
             {title && <SPAN titleWidth={titleWidth}>{title}：</SPAN>}
             <DIV titleWidth={titleWidth} title={title}>
               {children}
